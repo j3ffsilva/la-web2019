@@ -5,6 +5,7 @@
 %
 % defining the \BibTeX command - from Oren Patashnik's original BibTeX documentation.
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08emT\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\long\def\red#1{\textcolor{red}{#1}}
 
 % Rights management information.
 % This information is sent to you when you complete the rights form.
@@ -125,7 +126,7 @@ Write the abstract here.
 %
 % Keywords. The author(s) should pick words that accurately describe the work being
 % presented. Separate the keywords with commas.
-\keywords{datasets, neural networks, gaze detection, text tagging}
+\keywords{Solid, Access control, Decentralized web, Frameworks, Guardian}
 
 %
 % This command processes the author and affiliation and title information and builds
@@ -134,7 +135,16 @@ Write the abstract here.
 
 \section{Introduction}
 
-With the approval of the Brazilian General Data Protection Law (LGPDP),\footnote{https://legis.senado.leg.br/sdleg-getter/documento?dm=7761202\&ts=1531939522588\&disposition=inline\&ts=1531939522588} several software companies need to redesign the way they handle the personal data of Brazilian citizens. LGPDP is based on the General Data Protection Regulation (GDPR),\footnote{http://data.consilium.europa.eu/doc/document/ST-9565-2015-INIT/en/pdf} which aims at protecting the data of EU individuals.
+With the approval of the Brazilian General Data Protection Law (LGPD),\footnote{http://www.planalto.gov.br/ccivil\_03/\_Ato2015-2018/2018/Lei/L13709.htm} several software companies need to redesign the way they handle the personal data of Brazilian citizens. LGPD is based on the General Data Protection Regulation (GDPR),\footnote{http://data.consilium.europa.eu/doc/document/ST-9565-2015-INIT/en/pdf} which aims at protecting the personal data of EU individuals. In total, around 120 countries adopt comprehensive privacy laws and regulations to protect personal data held by private and public bodies \cite{Banisar2011}. Nevertheless, for the LGPD success, there must be not only fair regulation enforcement but also technological advancements, which potentially includes adopting new software development tools.
+
+
+Tim Berners-Lee and colleagues propose a platform named Solid (derived from "\textbf{So}cial \textbf{li}nked \textbf{d}ata"), which is can be defined as a set of principles, conventions, and tools for building decentralized Web applications [\red{REF}]. Solid is based on the principle that users should have full ownership their personal data. Currently, applications such as the social networks Facebook and LinkedIn work as "data silos" and all the personal data created in these platforms are controlled by the application companies. In constrast, decentralized Web applications provide complete separation between users' data and the applications that create and consume this data. While users store data in Web-accessible personal online datastores (pods), applications access users data relying as much as possible in W3C standards and Semantic Web technologies [\red{REF}]. Pods are by design application-agnostic and as a result users can change the application that consume their personal data at anytime. Despite incipient, Solid's architecture may be considered in several ways a technical solution to the legal framework set by LGPD and several other data protection regulations.
+
+
+Nevertheless, there are several shortcomings in Solid that still need to be addressed. A significant limitation is the use of Access Control Lists to authorize a subject (e.g., an application). 
+
+
+\red{Some text Here}
 
 
 
@@ -159,6 +169,10 @@ This document uses ....
 
 \section{Conclusion}
 
+
+\section{Backup Notes}
+- These laws not only aim at guaranteeing individual rights, but also at fostering economic growth by establishing rules for the adequate use of personal data.
+
 %
 % The acknowledgments section is defined using the "acks" environment (and NOT an unnumbered section). This ensures
 % the proper identification of the section in the article metadata, and the consistent spelling of the heading.
@@ -169,7 +183,7 @@ To Robert, for the bagels and explaining CMYK and color spaces.
 %
 % The next two lines define the bibliography style to be used, and the bibliography file.
 \bibliographystyle{ACM-Reference-Format}
-\bibliography{sample-base}
+\bibliography{laweb19}
 
 
 \end{document}
