@@ -47,7 +47,7 @@
 
 %
 % The "title" command has an optional parameter, allowing the author to define a "short title" to be used in page headers.
-\title{Beyond Brazil's Data Protection Law: Guarding Personal Data By Software Design}
+\title{After Brazil's Data Protection Law: Authorizing the Access to Personal Data in Solid}
 
 %
 % The "author" command and its associated commands are used to define the authors and their affiliations.
@@ -135,24 +135,21 @@ Write the abstract here.
 
 \section{Introduction}
 
-With the approval of the Brazilian General Data Protection Law (LGPD),\footnote{http://www.planalto.gov.br/ccivil\_03/\_Ato2015-2018/2018/Lei/L13709.htm} several software companies need to redesign the way they handle the personal data of Brazilian citizens. LGPD is based on the General Data Protection Regulation (GDPR),\footnote{http://data.consilium.europa.eu/doc/document/ST-9565-2015-INIT/en/pdf} which aims at protecting the personal data of EU individuals. In total, around 120 countries adopt comprehensive privacy laws and regulations to protect personal data held by private and public bodies \cite{Banisar2011}. Nevertheless, for the LGPD success, there must be not only fair regulation enforcement but also technological advancements, which potentially includes adopting new software development tools.
+With the approval of the Brazilian General Data Protection Law (LGPD),\footnote{http://www.planalto.gov.br/ccivil\_03/\_Ato2015-2018/2018/Lei/L13709.htm} several software companies need to redesign the applications they handle the personal data of Brazilian citizens. LGPD is based on the General Data Protection Regulation (GDPR),\footnote{http://data.consilium.europa.eu/doc/document/ST-9565-2015-INIT/en/pdf} which aims at protecting the personal data of EU individuals. In total, around 120 countries adopt comprehensive privacy laws and regulations to protect personal data held by private and public bodies \cite{Banisar2011}. Nevertheless, for the LGPD success, there must be not only fair regulation enforcement but also technological advancements, which potentially includes adopting new software development tools.
 
 
-Tim Berners-Lee and colleagues propose a platform named Solid (derived from "\textbf{So}cial \textbf{li}nked \textbf{d}ata"), which is can be defined as a set of principles, conventions, and tools for building decentralized Web applications [\red{REF}]. Solid is based on the principle that users should have full ownership their personal data. Currently, applications such as the social networks Facebook and LinkedIn work as "data silos" and all the personal data created in these platforms are controlled by the application companies. In constrast, decentralized Web applications provide complete separation between users' data and the applications that create and consume this data. While users store data in Web-accessible personal online datastores (pods), applications access users data relying as much as possible in W3C standards and Semantic Web technologies [\red{REF}]. Pods are by design application-agnostic and as a result users can change the application that consume their personal data at anytime. Despite incipient, Solid's architecture may be considered in several ways a technical solution to the legal framework set by LGPD and several other data protection regulations.
+Tim Berners-Lee and colleagues propose a platform called Solid (derived from "\textbf{So}cial \textbf{li}nked \textbf{d}ata"), which is can be described as a set of principles, conventions, and tools for building decentralized Web applications [\red{REF}]. An application is considered decentralized when it does not hold users' personal data [\red{REF}]. LGPD considers personal any data that directly or indirectly leads to the identification of a user [\red{REF}]. Solid is based on the principle that users should have full ownership of their personal data. Currently, applications (e.g., Facebook, LinkedIn, Santander) work as "data silos" and all the personal data created in these platforms are controlled by the application companies. In constrast, decentralized Web applications provide complete separation between users' data and the applications that create and consume this data. While users store data in Web-accessible personal online datastores (pods), applications access users data relying as much as possible in W3C standards and Semantic Web technologies [\red{REF}]. Pods are independent of applications, which means that the users can change the application that create or consume their personal data at anytime. Users can also grant or restrict access to their pods using Web Access Controls (WAC).
 
-
-Nevertheless, there are several shortcomings in Solid that still need to be addressed. A significant limitation is the use of Access Control Lists to authorize a subject (e.g., an application).
-
-
-\red{Some text Here}
+One implication of using Solid in the context of LGPD is that decentralized Web applications need to respond differently according to the citizenship of the user.
 
 
 
+We propose
 
 
 
 \section{Background}
-Here goes some more text.
+In this section, we offer some background on LGPD, decentralized Web, and on access control.
 
 \subsection{Brazilian Data Protection Law}
 Altough the Brazilian regulation is strongly inspired by the European GDPR, it has some national specifics, such as cross-border jurisdiction, what implies that the Bill is applicable to any organizations processing personal data of Brazilian residentes, whether it is headquarted in Brazil or not.
@@ -162,20 +159,21 @@ LGPD has also included the right of data portability, the right of access to per
 The Brazilian law also requires companies to nominate a Data Protection Officer (DPO) who will be in charge of monitoring the adoption of best practices for personal data protection and for reporting to the National Data Protection Authority (ANPD).
 
 In a technical perspective, efforts related to the decentralization of the Web help to build systems that are privacy-friendly, respecting user's privacy and in compliance with the regulation.
+
+
 \textcolor{red}{Ainda nao sei se esse paragrafo fica nessa section ou na proxima.}
 
-\subsection{Access Control in the Decentralized Web}
+\subsection{Access Control}
 
-This document uses ....
+Access control is typically split into two distinct procedures: authentication, and authorization. While authentication is concerned with determining whether a subject is who it claims to be, authorization is responsible for verifying if the subject is allowed to execute a protected resource. A subject is a term that refers to a user or any other external agent to the system.
 
-\section{Guardian}
+\section{Method}
+
+
+\section{Preliminary Results}
 
 
 \section{Conclusion}
-
-
-\section{Backup Notes}
-- These laws not only aim at guaranteeing individual rights, but also at fostering economic growth by establishing rules for the adequate use of personal data.
 
 %
 % The acknowledgments section is defined using the "acks" environment (and NOT an unnumbered section). This ensures
