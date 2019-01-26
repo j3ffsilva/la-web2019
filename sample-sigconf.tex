@@ -1,11 +1,32 @@
 %
 % The first command in your LaTeX source must be the \documentclass command.
 \documentclass[sigconf]{acmart}
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\usepackage{tabularx}
+\usepackage{listings}
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}]{$$},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+
+\def\code#1{\texttt{#1}}
+\long\def\red#1{\textcolor{red}{#1}}
 
 %
 % defining the \BibTeX command - from Oren Patashnik's original BibTeX documentation.
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08emT\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
-\long\def\red#1{\textcolor{red}{#1}}
 
 % Rights management information.
 % This information is sent to you when you complete the rights form.
@@ -47,7 +68,7 @@
 
 %
 % The "title" command has an optional parameter, allowing the author to define a "short title" to be used in page headers.
-\title{After Brazil's Data Protection Law: Authorizing the Access to Personal Data in Solid}
+\title{After Brazil's Data Protection Law: Authorizing the Access to Data in Solid Apps}
 
 %
 % The "author" command and its associated commands are used to define the authors and their affiliations.
@@ -135,14 +156,18 @@ Write the abstract here.
 
 \section{Introduction}
 
-With the approval of the Brazilian General Data Protection Law (LGPD),\footnote{http://www.planalto.gov.br/ccivil\_03/\_Ato2015-2018/2018/Lei/L13709.htm} several software companies need to redesign the applications they handle the personal data of Brazilian citizens. LGPD is based on the General Data Protection Regulation (GDPR),\footnote{http://data.consilium.europa.eu/doc/document/ST-9565-2015-INIT/en/pdf} which aims at protecting the personal data of EU individuals. In total, around 120 countries adopt comprehensive privacy laws and regulations to protect personal data held by private and public bodies \cite{Banisar2011}. Nevertheless, for the LGPD success, there must be not only fair regulation enforcement but also technological advancements, which potentially includes adopting new software development tools.
+With the approval of the Brazilian General Data Protection Law (LGPD),\footnote{http://www.planalto.gov.br/ccivil\_03/\_Ato2015-2018/2018/Lei/L13709.htm} several software companies need to redesign the applications that handle the personal data of Brazilian citizens. LGPD is based on the General Data Protection Regulation (GDPR),\footnote{http://data.consilium.europa.eu/doc/document/ST-9565-2015-INIT/en/pdf} which aims at protecting the personal data of EU individuals. In total, around 120 countries adopt comprehensive privacy laws and regulations to protect personal data held by private and public bodies \cite{Banisar2011}.
+
+Tim Berners-Lee and colleagues [\red{REF}] propose a platform called Solid (derived from "\textbf{So}cial \textbf{li}nked \textbf{d}ata"), which can be described as a set of principles, conventions, and tools for building decentralized Web applications. An application is considered decentralized when it does not hold users' personal data [\red{REF}]. LGPD considers personal any data that directly or indirectly leads to the identification of a user [\red{REF}]. Solid is based on the principle that users should have full ownership of their personal data. Currently, applications (e.g., Facebook, LinkedIn, Santander) work as "data silos" and all the personal data created in these platforms are controlled by the application companies. In constrast, decentralized Web applications provide complete separation between users' data and the applications that create and consume this data. While users store data in Web-accessible personal online datastores (pods), applications access users data relying as much as possible in W3C standards and Semantic Web technologies [\red{REF}]. Pods are independent of applications, which means that the users can change the application that create or consume their personal data at anytime. Users can also grant or restrict access to their pods using Web Access Controls (WAC).
 
 
-Tim Berners-Lee and colleagues propose a platform called Solid (derived from "\textbf{So}cial \textbf{li}nked \textbf{d}ata"), which is can be described as a set of principles, conventions, and tools for building decentralized Web applications [\red{REF}]. An application is considered decentralized when it does not hold users' personal data [\red{REF}]. LGPD considers personal any data that directly or indirectly leads to the identification of a user [\red{REF}]. Solid is based on the principle that users should have full ownership of their personal data. Currently, applications (e.g., Facebook, LinkedIn, Santander) work as "data silos" and all the personal data created in these platforms are controlled by the application companies. In constrast, decentralized Web applications provide complete separation between users' data and the applications that create and consume this data. While users store data in Web-accessible personal online datastores (pods), applications access users data relying as much as possible in W3C standards and Semantic Web technologies [\red{REF}]. Pods are independent of applications, which means that the users can change the application that create or consume their personal data at anytime. Users can also grant or restrict access to their pods using Web Access Controls (WAC).
+
 
 One implication of using Solid in the context of LGPD is that decentralized Web applications need to respond differently according to the citizenship of the user.
 
+\paragraph{RQ1: How decentralized applications can implement fine-grained access control}
 
+\paragraph{RQ2: How decentralized applications can implement fine-grained access control}
 
 We propose
 
@@ -166,18 +191,119 @@ In a technical perspective, the efforts related to the decentralization of the W
 \subsection{Decentralized Web}
 Teste \cite{Polleres2018}
 
-\subsection{Access Control in the Decentralized Web}
+\subsection{Access Control in Solid}
 
-Access control is typically split into two distinct procedures: authentication, and authorization. While authentication is concerned with determining whether a subject is who it claims to be, authorization is responsible for verifying if the subject is allowed to execute a protected resource. A subject is a term that refers to a user or any other external agent to the system.
+Access control is typically split into two distinct procedures: authentication, and authorization. While authentication is concerned with determining whether an agent (e.g., user, group) is whom it claims to be, authorization is responsible for verifying if the agent is allowed to access a protected resource (e.g., document) or operation (e.g., read, write, append).
 
-\section{Method}
+The Solid project uses the Web Access Control (WAC) specification for controlling the access to protected resources. WAC specifies a decentralized cross-domain access control system, similar to existing access control models. According to the specification, WAC has the following key features:
+
+\begin{enumerate}
+\item The resources are identified by URLs and can refer to any web documents or resources.
+\item It is declarative -- access control policies are written in regular web documents.
+\item Users and groups are also identified by URLs (specifically, by WebIDs).
+\item It is cross-domain -- all of its components, such as resources, agent WebIDs, and even the documents containing the access control policies, can potentially reside on separate domains.
+\end{enumerate}
+
+\begin{figure}
+  \includegraphics[trim=2cm 21.9cm 4.7cm 2cm, clip, scale=0.57]{pdf/alice-permission}
+  \caption{Example WAC Document}
+  \label{fig:individual-permission}
+\end{figure}
+
+Figure \ref{fig:individual-permission} shows an example of a WAC document that specifies that Alice (as identified by her WebID \code{https://alice.\\databox.me/profile/card\#me}) has full access (read, write, and control) to one of her web resources, located at \code{https://\\alice.databox.me/docs/file1}.
 
 
-\section{Preliminary Results}
+\begin{figure}
+  \includegraphics[trim=2cm 21.2cm 4.7cm 2cm, clip, scale=0.57]{pdf/shared-file1}
+  \caption{WAC document with group permission}
+  \label{fig:group-permission}
+\end{figure}
+
+In Figure 2, we can see that it is possible to give access to a group of agents using the \code{acl:agentGroup} predicate. In this case, members of the group \code{Accounting} can read and write the Alice's resource located at \code{https://alice.example.com\\/docs/shared-file1}.
+
+A group is a collection of members (or WebIDs) that needs to be specified in a different file. Figure \ref{fig:group-listing} depicts the listing of a group. In this case, \code{Bob} and \code{Candice} belong to the \code{Accounting} group. Additionally, it is possible to give access to all agents (public access) or yet to all authenticated agents. It is also possible to classify web apps as trusted. Furthermore, not every document needs its own individual access control list file. Rather, it is possible to create an authorization to a container, which is a web location that contain multiple resources.
+
+\begin{figure}
+  \includegraphics[trim=2cm 19cm 4.7cm 2cm, clip, scale=0.57]{pdf/work-groups}
+  \caption{WAC document listing group members}
+  \label{fig:group-listing}
+\end{figure}
+
+
+
+\section{Esfinge Guardian}
+In this section, we present the Esfinge Guardian\footnote{https://github.com/EsfingeFramework/guardian} framework. As depicted in Figure \ref{fig:guardian-class-diagram}, Guardian is composed of eight main elements.
+
+
+\cite{Guerra2015}
+
+\noindent \verb|AuthorizationContext|. It is the central entity that holds all the information required for an authorization, which includes the data for the subject, resource, and environment. That means all other entities should provide AuthorizationContext with enough information for authorization to occur. It is also an interface with the user, meaning that all other points must be hidden from the user.
+
+\noindent \verb|GuardianInterceptor|: is the entity responsible for abstracting the different existing interception technologies such as aspect-orientation, CGLib, dynamic proxy etc.
+
+
+\noindent \verb|Invoker|: is an entity with the ability to mimic the operation performed by the subject on a protected resource. In the Esfinge Guardian framework, this element can execute methods; however, it is important to note that is just one of the possibilities since the architectural model is general.
+
+
+\noindent \verb|Populator|: It is the entity that contains the data extraction logic for authorization. Information for authorization can be anywhere such as databases, files, shared variables, user session, arguments, Internet, etc. For this reason, Populator is an entity that knows how to obtain information from all these places.
+
+
+\noindent \verb|PopulatorProcessor|: Entity that gathers and executes all defined Populators in the application.
+
+
+\noindent \verb|Authorizer|: Entity that implements the logic of the access control policy and may use information stored in AuthorizationContext if necessary. There must be at least one Authorizer. Every Authorizer must provide its response to the AuthorizationProcessor, usually a "yes" or "no"; however, it must be possible to include other response types such as "Indeterminate".
+
+
+\noindent \verb|AuthorizerProcessor|: Entity that contains the combining algorithm for all the Authorizers defined in the application.
+
+
+\noindent \verb|AuthorizationMetada|: Entity that indicates which resources – or their operations – must be intercepted by the authorization mechanism. A requirement is that this element must be of metadata type, so that it can be used declaratively. Esfinge Guardian uses Java annotations as the implementation of this element; however, it can be considered a general marking element that is independent of a specific technology.
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{img/interception-mechanism.png}
+  \caption{A conceptualization of the interception mechanism \cite{Silva2013}}
+  \label{fig:interception-mechanism}
+\end{figure}
+
+\begin{figure*}
+  \centering
+  \includegraphics[scale=0.45]{img/guardian-class-diagram.png}
+  \caption{Esfinge Guardian class diagram \cite{Silva2013}}
+  \label{fig:guardian-class-diagram}
+\end{figure*}
+
+
+
+\section{Case Example}
+
+\begin{lstlisting}
+
+public class HierarchyAuthorizer
+ implements Authorizer<RespectHierarchy> {
+
+  public Boolean authorize(
+                  AuthorizationContext c,
+                    RespectHierarchy rh) {
+
+  Set<String> roles = ctx.subject("roles");
+  //retrieve other relevant information from ctx
+  return //hierarchy authorization logic;
+  }
+}
+
+\end{lstlisting}
+
+\section{Discussion}
+
+Here goes some discussion.
+
+\section{Related Work}
+A bit about others work.
 
 
 \section{Conclusion}
-
+Here goes a conclusion.
 %
 % The acknowledgments section is defined using the "acks" environment (and NOT an unnumbered section). This ensures
 % the proper identification of the section in the article metadata, and the consistent spelling of the heading.
