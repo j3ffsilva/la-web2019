@@ -189,9 +189,15 @@ In a technical perspective, the efforts related to the decentralization of the W
 \textcolor{red}{Ainda nao sei se esse paragrafo fica nessa section ou na proxima.}
 
 \subsection{Solid and the Decentralized Web}
-Traditional social web applications, such as Facebook, Twitter, and others control its own data and have its own authentication and access control mechanisms, transforming them into centralized applications. In the contrast of this approach, there are emergent solutions proposing a new perspective to enable decoupling application logic and user data, allowing it to create privacy-friendly services on the Web.
+Traditional social web applications, such as Facebook, Twitter, and others control its own data and have its own authenticatoin and access control mechanisms, transforming them into centralized applications. In the contrast of this approach, there are emergent solutions propposing a new perspective to enable decoupling application logic and user data, allowing it to create privacy-friendly services on the Web.
 
+Solid is a platform that supports decentralized social web applications, relying on open standards and on semantic web technologies. In the Solid platform, applications run in a browser or as mobile applications, while users` data are stored in a Web-accesibile personal on-line datastore (pod). Protocols for authenticatoin, access control, communications among servers and applications are specified in the platform \cite{Sambra2016}.
 
+Data used by applications built on top of Solid is stored in users` pods, while pods can be stored on pod servers. Pod servers manage data according to the Linked Data Platform recommendation, enabling it to manipulate data items through HTTP requests \cite{LDP}. Solid servers are, as defined by their authors \cite{Sambra2016}, application-agnostic, and can deal with both structured and unstructured data. The first is represented using RDF, a Semantic Web standard, and the latter is any type of data, such as videos, images, HTML web pages.
+
+Application development based on (in???) Solid platform supports portability and interoperability, so applications can be seen as an interface that works with distributed data in multiple pod server implementations.
+
+Identity in the Solid context is based on WebID, which allows agents (a person, an organization, etc.) to create their own identities using global unique identifiers - HTTP URIs \cite{Sambra2016solid}. WebID is an open and decentralized identification mechanism being developed by a W3C community group\footnote{\url{https://www.w3.org/community/webid/}}.
 
 \subsection{Access Control in Solid}
 
