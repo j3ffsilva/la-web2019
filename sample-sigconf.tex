@@ -162,7 +162,7 @@ LGPD sets compliance requirements on the companies in charge of making decisions
 
 To avoid being classified as either data processors or data controllers, some companies may redesign applications as decentralized Web Applications (Web Apps). \red{An application is considered decentralized when it does not hold users' data} [\red{REF}]. Tim Berners-Lee and colleagues [\red{REF}] propose a platform called Solid (derived from "\textbf{So}cial \textbf{li}nked \textbf{d}ata"), which can be described as a set of principles, conventions, and tools for building decentralized Web Apps. Solid is based on the principle that users should have full ownership of their data, which are stored in Web-accessible personal online datastores (pods). Pods are independent of Web Apps. For obtaining services, users need to authorize Web Apps to access their pods explicitly, by classifying Web Apps as trusted.
 
-Nevertheless, this approach leaves users solely responsible for controlling access to protected resources, which may not be enough to comply with LGPD requirements of Privacy by Design. For example, a bank Web App may have an operation that reads personal data from the pods that should be accessible by account managers but not by analysts. A violation of this access control policy would configure a data breach, in which case the companies would be required to show that they applied appropriate controls, from software design.
+Nevertheless, this approach leaves users solely responsible for controlling access to protected resources, which may not be enough to comply with the LGPD requirements of Privacy by Design. For example, a bank Web App may have an operation that reads personal data from the pods that should be accessible by account managers but not by analysts. A violation of this access control policy would configure a data breach, in which case the companies might be required to show that they applied appropriate controls, possibly from the software design.
 
 The current body of literature does not ...
 
@@ -174,7 +174,7 @@ The answer to our RQ may help companies...
 
 
 \section{Background}
-In this section, we offer some background on LGPD, decentralized Web, and on access control.
+In this section, we offer some background on the Brazil's General Data Protection Law, on decentralized Web Apps in Solid, and on access control in Solid.
 
 \subsection{Brazilian Data Protection Law}
 The LGPD is strong inspired by the European GDPR. The Brazilian Bill, as the European one, defines cross-border jurisdiction, thus the Bill is applicable to any organizations processing personal data of Brazilian residents, whether it is headquartered in Brazil or not.
@@ -221,9 +221,9 @@ Figure \ref{fig:individual-permission} shows an example of a WAC document that s
   \label{fig:group-permission}
 \end{figure}
 
-In Figure 2, we can see that it is possible to give access to a group of agents using the \code{acl:agentGroup} predicate. A group is a collection of members (or WebIDs) that needs to be specified in a different file. In this case, members of the group \code{Accounting} can read and write the Alice's resource located at \code{https://alice.example.com\\/docs/shared-file1}.
+In Figure \ref{fig:group-permission}, we can see that it is possible to give access to a group of agents using the \code{acl:agentGroup} predicate. A group is a collection of members (or WebIDs) that needs to be specified in a different file. In this case, members of the group \code{Accounting} can read and write the Alice's resource located at \code{https://alice.example.com\\/docs/shared-file1}.
 
- Figure \ref{fig:group-listing} depicts the listing of a group. In this case, \code{Bob} and \code{Candice} belong to the \code{Accounting} group. Additionally, it is possible to give access to all agents (public access) or yet to all authenticated agents. It is also possible to classify web apps as trusted. Furthermore, not every document needs its own individual access control list file. Rather, it is possible to create an authorization to a container, which is a web location that contain multiple resources.
+Figure \ref{fig:group-listing} depicts the listing of a group. In this case, \code{Bob} and \code{Candice} belong to the \code{Accounting} group. Additionally, it is possible to give access to all agents (public access) or yet to all authenticated agents. It is also possible to classify web apps as trusted. Furthermore, not every document needs its own individual access control list file. Rather, it is possible to create an authorization to a container, which is a web location that contain multiple resources.
 
 \begin{figure}
   \includegraphics[trim=2cm 19cm 4.7cm 2cm, clip, scale=0.57]{pdf/work-groups}
@@ -232,12 +232,27 @@ In Figure 2, we can see that it is possible to give access to a group of agents 
 \end{figure}
 
 
+\subsection{Frameworks (temp)}
+Guerra et al. \cite{Guerra2015}
 
 \section{Esfinge Guardian}
-In this section, we present the Esfinge Guardian\footnote{https://github.com/EsfingeFramework/guardian} framework. As depicted in Figure \ref{fig:guardian-class-diagram}, Guardian is composed of eight main elements.
+In this section, we present the Esfinge Guardian\footnote{https://github.com/EsfingeFramework/guardian} framework. Essentially, the Esfinge Guardian framework is an intercepting mechanism between a requester and a protected operation. Figure \ref{fig:interception-mechanism} illustrates Guardian intercepting a requester's access to a protected operation on a resource.
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{img/interception-mechanism.png}
+  \caption{A conceptualization of the interception mechanism. Silva et al. \cite{Silva2013}}
+  \label{fig:interception-mechanism}
+\end{figure}
 
 
-\cite{Guerra2015}
+As depicted in Figure \ref{fig:guardian-class-diagram}, Guardian is composed of eight main elements.
+
+
+
+
+
+
 
 \noindent \verb|AuthorizationContext|. It is the central entity that holds all the information required for an authorization, which includes the data for the subject, resource, and environment. That means all other entities should provide AuthorizationContext with enough information for authorization to occur. It is also an interface with the user, meaning that all other points must be hidden from the user.
 
@@ -261,12 +276,7 @@ In this section, we present the Esfinge Guardian\footnote{https://github.com/Esf
 
 \noindent \verb|AuthorizationMetada|: Entity that indicates which resources – or their operations – must be intercepted by the authorization mechanism. A requirement is that this element must be of metadata type, so that it can be used declaratively. Esfinge Guardian uses Java annotations as the implementation of this element; however, it can be considered a general marking element that is independent of a specific technology.
 
-\begin{figure}
-  \centering
-  \includegraphics[scale=0.5]{img/interception-mechanism.png}
-  \caption{A conceptualization of the interception mechanism \cite{Silva2013}}
-  \label{fig:interception-mechanism}
-\end{figure}
+
 
 \begin{figure*}
   \centering
