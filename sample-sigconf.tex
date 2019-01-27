@@ -68,7 +68,7 @@
 
 %
 % The "title" command has an optional parameter, allowing the author to define a "short title" to be used in page headers.
-\title{After Brazil's Data Protection Law: Authorizing the Access to Data in Solid Apps}
+\title{After Brazil's General Data Protection Law: Authorization in Solid Web Apps}
 
 %
 % The "author" command and its associated commands are used to define the authors and their affiliations.
@@ -156,21 +156,21 @@ Write the abstract here.
 
 \section{Introduction}
 
-With the approval of the Brazilian General Data Protection Law (LGPD),\footnote{http://www.planalto.gov.br/ccivil\_03/\_Ato2015-2018/2018/Lei/L13709.htm} several software companies need to redesign the applications that handle the personal data of Brazilian citizens. LGPD is based on the General Data Protection Regulation (GDPR),\footnote{http://data.consilium.europa.eu/doc/document/ST-9565-2015-INIT/en/pdf} which aims at protecting the personal data of EU individuals. In total, around 120 countries adopt comprehensive privacy laws and regulations to protect personal data held by private and public bodies \cite{Banisar2011}.
+With the approval of the Brazilian General Data Protection Law (LGPD),\footnote{http://www.planalto.gov.br/ccivil\_03/\_Ato2015-2018/2018/Lei/L13709.htm} several software companies may need to redesign the applications that handle the personal data of Brazilian citizens. LGPD considers personal any data that directly or indirectly lead to the identification of a user [\red{REF}]. Violations can lead to fines up to \red{2}\% of global revenue.
 
-Tim Berners-Lee and colleagues [\red{REF}] propose a platform called Solid (derived from "\textbf{So}cial \textbf{li}nked \textbf{d}ata"), which can be described as a set of principles, conventions, and tools for building decentralized Web applications. An application is considered decentralized when it does not hold users' personal data [\red{REF}]. LGPD considers personal any data that directly or indirectly leads to the identification of a user [\red{REF}]. Solid is based on the principle that users should have full ownership of their personal data. Currently, applications (e.g., Facebook, LinkedIn, Santander) work as "data silos" and all the personal data created in these platforms are controlled by the application companies. In constrast, decentralized Web applications provide complete separation between users' data and the applications that create and consume this data. While users store data in Web-accessible personal online datastores (pods), applications access users data relying as much as possible in W3C standards and Semantic Web technologies [\red{REF}]. Pods are independent of applications, which means that the users can change the application that create or consume their personal data at anytime. Users can also grant or restrict access to their pods using Web Access Controls (WAC).
+LGPD sets compliance requirements on the companies in charge of making decisions about the data processing (i.e., data controllers) and the companies that process personal data in the name of data controllers (i.e., data processors). LGPD states that, in some cases, data controllers and/or data processors may be held liable for any cause of action that involves harm to data subjects [\red{REF}].
 
+To avoid being classified as either data processors or data controllers, some companies may redesign applications as decentralized Web Applications (Web Apps). \red{An application is considered decentralized when it does not hold users' data} [\red{REF}]. Tim Berners-Lee and colleagues [\red{REF}] propose a platform called Solid (derived from "\textbf{So}cial \textbf{li}nked \textbf{d}ata"), which can be described as a set of principles, conventions, and tools for building decentralized Web Apps. Solid is based on the principle that users should have full ownership of their data, which are stored in Web-accessible personal online datastores (pods). Pods are independent of Web Apps. For obtaining services, users need to authorize Web Apps to access their pods explicitly, by classifying Web Apps as trusted.
 
+Nevertheless, this approach leaves users solely responsible for controlling access to protected resources, which may not be enough to comply with LGPD requirements of Privacy by Design. For example, a bank Web App may have an operation that reads personal data from the pods that should be accessible by account managers but not by analysts. A violation of this access control policy would configure a data breach, in which case the companies would be required to show that they applied appropriate controls, from software design.
 
+The current body of literature does not ...
 
-One implication of using Solid in the context of LGPD is that decentralized Web applications need to respond differently according to the citizenship of the user.
+\vspace{0.15cm}
+\noindent \textbf{RQ1: How decentralized Web Apps could be designed for privacy to comply with LGPD in an auditable fashion?}
+\vspace{0.15cm}
 
-\paragraph{RQ1: How decentralized applications can implement fine-grained access control}
-
-\paragraph{RQ2: How decentralized applications can implement fine-grained access control}
-
-We propose
-
+The answer to our RQ may help companies...
 
 
 \section{Background}
@@ -221,9 +221,9 @@ Figure \ref{fig:individual-permission} shows an example of a WAC document that s
   \label{fig:group-permission}
 \end{figure}
 
-In Figure 2, we can see that it is possible to give access to a group of agents using the \code{acl:agentGroup} predicate. In this case, members of the group \code{Accounting} can read and write the Alice's resource located at \code{https://alice.example.com\\/docs/shared-file1}.
+In Figure 2, we can see that it is possible to give access to a group of agents using the \code{acl:agentGroup} predicate. A group is a collection of members (or WebIDs) that needs to be specified in a different file. In this case, members of the group \code{Accounting} can read and write the Alice's resource located at \code{https://alice.example.com\\/docs/shared-file1}.
 
-A group is a collection of members (or WebIDs) that needs to be specified in a different file. Figure \ref{fig:group-listing} depicts the listing of a group. In this case, \code{Bob} and \code{Candice} belong to the \code{Accounting} group. Additionally, it is possible to give access to all agents (public access) or yet to all authenticated agents. It is also possible to classify web apps as trusted. Furthermore, not every document needs its own individual access control list file. Rather, it is possible to create an authorization to a container, which is a web location that contain multiple resources.
+ Figure \ref{fig:group-listing} depicts the listing of a group. In this case, \code{Bob} and \code{Candice} belong to the \code{Accounting} group. Additionally, it is possible to give access to all agents (public access) or yet to all authenticated agents. It is also possible to classify web apps as trusted. Furthermore, not every document needs its own individual access control list file. Rather, it is possible to create an authorization to a container, which is a web location that contain multiple resources.
 
 \begin{figure}
   \includegraphics[trim=2cm 19cm 4.7cm 2cm, clip, scale=0.57]{pdf/work-groups}
@@ -306,6 +306,14 @@ A bit about others work.
 
 \section{Conclusion}
 Here goes a conclusion.
+
+
+\section{BACKUP}
+1.%%  NEW PROPOSITION OF PARAGRAPH%%
+LGPD is based on the General Data Protection Regulation (GDPR),\footnote{http://data.consilium.europa.eu/doc/document/ST-9565-2015-INIT/en/pdf} which aims at protecting the personal data of EU individuals. In total, around 120 countries adopt comprehensive privacy laws and regulations to protect personal data held by private and public bodies \cite{Banisar2011}.
+
+
+
 %
 % The acknowledgments section is defined using the "acks" environment (and NOT an unnumbered section). This ensures
 % the proper identification of the section in the article metadata, and the consistent spelling of the heading.
