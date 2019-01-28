@@ -108,8 +108,7 @@
 %
 % The abstract is a short summary of the work to be presented in the article.
 \begin{abstract}
-Write the abstract here.
-
+Currently, decentralized Web Applications (Web Apps) do not offer fine-grained access controls to users' data, which potentially creates openings for data breaches. For software companies that need to comply with Brazil's General Data Protection Law (LGPD), privacy violations could mean incurring in hefty fines. We propose the use of Esfinge Guardian framework for increasing compliance with the LGPD in the context of decentralized Web Apps.
 \end{abstract}
 
 %
@@ -124,53 +123,49 @@ Write the abstract here.
 
 \section{Introduction}
 
-With the approval of the Brazilian General Data Protection Law (LGPD),\footnote{http://www.planalto.gov.br/ccivil\_03/\_Ato2015-2018/2018/Lei/L13709.htm} several software companies may need to redesign the applications that handle the personal data of Brazilian citizens. LGPD considers personal any data that directly or indirectly lead to the identification of a user [\red{REF}]. Violations can lead to fines up to \red{2}\% of global revenue.
+With the approval of the Brazilian General Data Protection Law (LGPD, Portuguese acronym) \cite{LGPD18}, several software companies may need to redesign the applications that handle the personal data of Brazilian citizens. The LGPD considers personal any data that directly or indirectly lead to the identification of a user \cite{LGPD18}. Neglecting the LGPD requirements could mean incurring in fines up to 2\% of companies' global revenue \cite{LGPD18}.
 
-LGPD sets compliance requirements on the companies in charge of making decisions about the data processing (i.e., data controllers) and the companies that process personal data in the name of data controllers (i.e., data processors). LGPD states that, in some cases, data controllers and/or data processors may be held liable for any cause of action that involves harm to data subjects [\red{REF}].
+The LGPD sets compliance requirements on the companies in charge of making decisions about the data processing (i.e., data controllers) and the companies that process personal data in the name of data controllers (i.e., data processors) \cite{LGPD18}. The LGPD states that, in some cases, data controllers and data processors may be held liable, especially in cases where data breaches are harmful to users \cite{LGPD18}.
 
-To avoid being classified as either data processors or data controllers, some companies may redesign applications as decentralized Web Applications (Web Apps). \red{An application is considered decentralized when it does not hold users' data} [\red{REF}]. Tim Berners-Lee and colleagues [\red{REF}] propose a platform called Solid (derived from "\textbf{So}cial \textbf{li}nked \textbf{d}ata"), which can be described as a set of principles, conventions, and tools for building decentralized Web Apps. Solid is based on the principle that users should have full ownership of their data, which are stored in Web-accessible personal online datastores (pods). Pods are independent of Web Apps. For obtaining services, users need to authorize Web Apps to access their pods explicitly, by classifying Web Apps as trusted.
+To avoid being classified as either data processors or data controllers (as an attempt to avoid sanctions), some companies may redesign applications as decentralized Web Applications (Web Apps). In the context of this research, an application is considered decentralized when it does not hold users' data. Tim Berners-Lee and colleagues \cite{Sambra} propose a platform called Solid (derived from "\textbf{So}cial \textbf{li}nked \textbf{d}ata"), which can be described as a set of principles, conventions, and tools for building decentralized Web Apps. Solid is based on the principle that users should have full ownership of their data, which are stored in Web-accessible personal online datastores (pods) \cite{Sambra}. Pods are independent of Web Apps. For obtaining services, users need to authorize Web Apps to access their pods explicitly, by classifying Web Apps as trusted.
 
-Nevertheless, this approach leaves users solely responsible for controlling access to protected resources, which may not be \linebreak enough to comply with the LGPD requirements of Privacy by Design. For example, a bank Web App may have an operation that reads personal data from the pods that should be accessible by account managers but not by analysts. A violation of this access control policy would configure a data breach, in which case the companies might be required to show that they applied appropriate controls, possibly from the software design.
+Using Solid alone leaves users solely responsible for controlling access to protected resources, which may not be enough to comply with the LGPD. The LGPD requirement of data governance (see Art. 50, Par. 2 in \cite{LGPD18}) states that, among other things, companies should establish adequate policies to protect users' data. Nevertheless, in Solid Web Apps, a user would not have the means to prevent unauthorized access to their data, after classifying a Web App as trusted. For example, a bank Web App may have a sensitive operation that reads personal data from the users' pods that should be accessible only by account managers. A violation of this access control policy would configure a data breach, in which case the bank might still be held liable. Also, the liability risk might create the need for audits, in which case it would be necessary that the company demonstrated that it possesses appropriate controls, possibly directly in source code.
 
-\red{The current body of literature does not ...}
+Thus, we establish the following research question (RQ).
 
 \vspace{0.15cm}
-\noindent \textbf{RQ1: How decentralized Web Apps could be designed for privacy to comply with LGPD in an auditable fashion?}
+\noindent \textbf{RQ: How to design decentralized Web Apps to increase compliance with the LGPD requirement of data governance?}
 \vspace{0.15cm}
 
-The answer to our RQ may help companies...
+We claim that the answer to our RQ may help companies to design authorization solutions in decentralized Web Apps in increased compliance with the LGPD.
+
+This work is organized as follows. In Chapter 2, we offer some background. In Chapter 3, we present Esfinge Guardian. In Chapter 4, we offer a case example. In Chapter 5, we present some related works. We conclude with a brief discussion in Chapter 6.
 
 
 \section{Background}
 In this section, we offer some background on the Brazil's General Data Protection Law, on decentralized Web Apps in Solid, and on access control in Solid.
 
-\subsection{Brazilian Data Protection Law}
-The LGPD is strong inspired by the European GDPR. The Brazilian Bill, as the European one, defines cross-border jurisdiction, thus the Bill is applicable to any organizations processing personal data of Brazilian residents, whether it is headquartered in Brazil or not.
+\subsection{Brazil's General Data Protection Law}
 
-LGPD has also included the right of data portability, the right of access to personal data by the owner, and the right of erasure. Differently of the GDPR, which imposes 30 days for the controllers to comply with these requests, the LGPD imposes 15 days.
+The Brazil's General Data Protection Law (LGPD) is based on the General Data Protection Regulation (GDPR),\footnote{\url{http://data.consilium.europa.eu/doc/document/ST-9565-2015-INIT/en/pdf}} which aims at protecting the personal data of EU individuals. In total, around 120 countries adopt comprehensive privacy laws and regulations to protect personal data held by private and public bodies \cite{Banisar2011}.
 
-The Brazilian law also requires companies to nominate a Data Protection Officer (DPO) who will be in charge of monitoring the adoption of best practices for personal data protection and for reporting to the National Data Protection Authority (ANPD).
+The LGPD applies to any individual or legal entity (public or private) with personal data processing activities that: are carried out in Brazil; offer or supply goods or services in Brazil or relate to individuals located in Brazil, and; involve personal data collected in Brazil.
 
-The regulation defines the concepts of personal data as "any data, isolated or aggregated to another, that may allow the identification of a natural person or subject them to a certain behavior" \cite{iapp2018}; sensitive data refers to data that may be subject to discriminatory practices, such as political opinion, sexual life, religious belief, genetic and biometric data, and it should have additional security layers; Unless it is possible to reverse-engineering the anonymized data, the law does not apply to this kind of data.
+The LGPD also requires companies to nominate a Data Protection Officer who will be in charge of monitoring the adoption of best practices for personal data protection and for reporting to the National Data Protection Authority.
 
-In a technical perspective, the efforts related to the decentralization of the Web help to build systems that are privacy-friendly, respecting user's privacy and in compliance with the regulations.
+\subsection{Decentralized Solid Web Apps}
 
-\subsection{Solid and the Decentralized Web}
-Traditional social web applications, such as Facebook, Twitter, and others control its own data and have its own authentication and access control mechanisms, transforming them into centralized applications. In the contrast of this approach, there are emergent solutions proposing a new perspective to enable decoupling application logic and user data, allowing it to create privacy-friendly services on the Web.
+Traditional Web Apps (e.g., Facebook, Twitter, and Santander) implement private APIs, access control and data storage mechanisms. Because users cannot move their data to other platforms, these Web Apps become "data silos." We refer to these Web Apps as centralized Web Apps.
 
-Solid is a platform that supports decentralized social web applications, relying on open standards and on semantic web technologies. In the Solid platform, applications run in a browser or as mobile applications, while users` data are stored in a Web-accessible personal on-line data store (pod). Protocols for authentication, access control, communications among servers and applications are specified in the platform \cite{Sambra2016}.
+Solid is a platform that supports decentralized Web Apps, by relying on open standards and semantic web technologies. In the Solid platform, applications run in a browser or as mobile applications, while users data are stored in a Web-accessible personal online data store (pods). However, protocols for access controls, communications between servers and applications are specific to Solid \cite{Sambra}.
 
-Data used by applications built on top of Solid is stored in users` pods, while pods can be stored on pod servers. Pod servers manage data according to the Linked Data Platform recommendation, enabling it to manipulate data items through HTTP requests \cite{LDP}. Solid servers are, as defined by their authors \cite{Sambra2016},\linebreak application-agnostic, and can deal with both structured and unstructured data. The first is represented using RDF, a Semantic Web standard, and the latter is any type of data, such as videos, images, HTML web pages.
+Data used by Solid Web Apps are stored in users' pods. Although pods can be stored locally or remotely, they typically are stored in pod servers. Pod servers manage data according to the Linked Data Platform recommendation, enabling it to manipulate data items through HTTP requests \cite{LDP}. Solid servers are application-agnostic and can deal with both structured and unstructured data. Structured data is represented using RDF, a Semantic Web standard. Application development based on Solid platform supports portability and interoperability, so applications can be seen as an interface that works with distributed data in multiple pod server implementations.
 
-Application development based on (\red{in???}) Solid platform supports portability and interoperability, so applications can be seen as an interface that works with distributed data in multiple pod server implementations.
+Identity in the Solid context is based on WebID, which allows agents (a person, an organization, etc.) to create their identities using global unique identifiers - HTTP URIs \cite{Sambra}. A WebID is an open and decentralized identification mechanism being developed by a W3C community group.\footnote{\url{https://www.w3.org/community/webid/}}
 
-Identity in the Solid context is based on WebID, which allows agents (a person, an organization, etc.) to create their own identities using global unique identifiers - HTTP URIs \cite{Sambra2016solid}. WebID is an open and decentralized identification mechanism being developed by a W3C community group\footnote{\url{https://www.w3.org/community/webid/}}.
+The main idea behind Solid is to put people back in control of their data, allowing them to choose where to store their data. Solid aims at aligning with the view of a decentralized web, where data is decentralized and stored in personal data storages, or distributed servers in which the user has full control over its data \cite{verborgh_iswc_2018}.
 
-The main idea behind Solid is to put people back in control of their data, allowing them to choose where to store their own data. Solid proposal is aligned with the view of a \textit{decentralized web}, where data is decentralized and stored in personal data storage, or distributed servers in which the user has full control over its own data \cite{verborgh_iswc_2018}.
-
-In a decentralized web model, resources created using one application can be read and modified by a different application without prior agreement between the applications. It is possible because the applications are interfaces to access data stored in multiple locations, such as in a \textit{pod}.
-
-One can say that the decentralized web is characterized by \linebreak changing data ownership, giving users the tools to have full control of their data, supported by legal instruments, such as GDPR and LGPD, that empower them to control their own personal information.
+In a decentralized web model, resources created using one application and can be read and modified by a different one without prior agreement between the applications. It is possible because the applications are interfaces to access data stored in multiple locations, such as in a pod.
 
 \subsection{Access Control in Solid}
 
@@ -185,82 +180,39 @@ The Solid project uses the Web Access Control (WAC) specification for controllin
 \item It is cross-domain -- all of its components, such as resources, agent WebIDs, and even the documents containing the access control policies, can potentially reside on separate domains.
 \end{enumerate}
 
-\begin{figure}
-  \includegraphics[trim=2cm 21.9cm 4.7cm 2cm, clip, scale=0.57]{pdf/alice-permission}
-  \caption{Example WAC Document}
-  \label{fig:individual-permission}
-\end{figure}
 
-Figure \ref{fig:individual-permission} shows an example of a WAC document that specifies that Alice (as identified by her WebID \code{https://alice.\\databox.me/profile/card\#me}) has full access (read, write, and control) to one of her web resources, located at \code{https://\\alice.databox.me/docs/file1}.
+\begin{lstlisting}[escapeinside=||,caption={Example WAC Document}, captionpos=b,label={lst:individual-permission}]
+  |\includegraphics[trim=2cm 21.9cm 4.7cm 2cm, clip, scale=0.57]{pdf/alice-permission}|
+\end{lstlisting}
 
+Listing \ref{lst:individual-permission} shows an example of a WAC document that specifies that Alice (as identified by her WebID \code{https://alice.\\databox.me/profile/card\#me}) has full access (read, write, and control) to one of her web resources, located at \code{https://\\alice.databox.me/docs/file1}.
 
-\begin{figure}
-  \includegraphics[trim=2cm 21.2cm 4.7cm 2cm, clip, scale=0.57]{pdf/shared-file1}
-  \caption{WAC document with group permission}
-  \label{fig:group-permission}
-\end{figure}
-
-In Figure \ref{fig:group-permission}, we can see that it is possible to give access to a group of agents using the \code{acl:agentGroup} predicate. A group is a collection of members (or WebIDs) that needs to be specified in a different file. In this case, members of the group \code{Accounting} can read and write the Alice's resource located at \code{https://alice.example.com/docs/shared-file1}.
-
-Figure \ref{fig:group-listing} depicts the listing of a group. In this case, \code{Bob} and \code{Candice} belong to the \code{Accounting} group. Additionally, it is possible to give access to all agents (public access) or yet to all authenticated agents. It is also possible to classify web apps as trusted. Furthermore, not every document needs its own individual access control list file. Rather, it is possible to create an authorization to a container, which is a web location that contain multiple resources.
-
-\begin{figure}
-  \includegraphics[trim=2cm 19cm 4.7cm 2cm, clip, scale=0.57]{pdf/work-groups}
-  \caption{WAC document listing group members}
-  \label{fig:group-listing}
-\end{figure}
-
-
-\subsection{Frameworks (temp)}
-Guerra et al. \cite{Guerra2015}
-
-
+Similarly, it is possible to give access to a group of agents using the \code{acl:agentGroup} predicate. A group is a collection of members (or WebIDs) that needs to be specified in a different file. Moreover, it is possible to give access to all agents (public access) or yet to all authenticated agents. It is also possible to classify Web Apps as trusted. Furthermore, not every document needs its own individual access control list file. Rather, it is possible to create an authorization to a container, which is a web location that contain multiple resources.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% NEW SECTION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Esfinge Guardian}
-In this section, we present the Esfinge Guardian\footnote{https://github.com/EsfingeFramework/guardian} framework. Essentially, the Esfinge Guardian framework is an intercepting mechanism between a requester and a protected operation. Figure \ref{fig:interception-mechanism} illustrates Guardian intercepting a requester's access to a protected operation on a resource.
+
+In this section, we present the Esfinge Guardian\footnote{\url{https://github.com/EsfingeFramework/guardian}} framework.
+
+Essentially, the Esfinge Guardian's role is to intercept calls to protected operations. Figure \ref{fig:interception-mechanism} depicts the interception. As an example, consider a protected operation \verb|debit()|, which should only be executed by the account owner. The call to \verb|debit()| would be intercepted by Esfinge Guardian.
 
 \begin{figure}
   \centering
   \includegraphics[scale=0.5]{img/interception-mechanism.png}
-  \caption{A conceptualization of the interception mechanism. Silva et al. \cite{Silva2013}}
+  \caption{A conceptualization of the interception mechanism (Silva et al. \cite{Silva2013})}
   \label{fig:interception-mechanism}
 \end{figure}
 
-As depicted in Figure \ref{fig:guardian-class-diagram}, Guardian is composed of eight main elements.
+Esfinge Guardian is composed of eight main elements (see Guerra et al. \cite{Guerra2015} and Silva et al.\cite{Silva2013} for in depth explanations). For brevity, we only present the three elements necessary to implement access control policies of our case example.
 
-\noindent \verb|AuthorizationContext|. It is the central entity that holds all the information required for an authorization, which includes the data for the subject, resource, and environment. That means all other entities should provide AuthorizationContext with enough information for authorization to occur. It is also an interface with the user, meaning that all other points must be hidden from the user.
+\noindent \verb|AuthorizationContext|. It is the central entity that holds all the information required for an authorization, which includes the data for the subject, resource, and environment. That means all other entities should provide AuthorizationContext with enough information for authorization to occur.
 
-\noindent \verb|GuardianInterceptor|: is the entity responsible for abstracting the different existing interception technologies such as \linebreak aspect-orientation, CGLib, dynamic proxy etc.
-
-
-\noindent \verb|Invoker|: is an entity with the ability to mimic the operation performed by the subject on a protected resource. In the Esfinge \linebreak Guardian framework, this element can execute methods; however, it is important to note that is just one of the possibilities since the architectural model is general.
+\noindent \verb|Authorizer|: Entity that implements the logic of the access control policy and may use information stored in AuthorizationContext if necessary. There must be at least one Authorizer. Every Authorizer must provide a response in the form of a "yes" or "no"; however, it must be possible to include other response types such as "Indeterminate."
 
 
-\noindent \verb|Populator|: It is the entity that contains the data extraction logic for authorization. Information for authorization can be anywhere such as databases, files, shared variables, user session, arguments, Internet, etc. For this reason, Populator is an entity that knows how to obtain information from all these places.
-
-
-\noindent \verb|PopulatorProcessor|: Entity that gathers and executes all defined Populators in the application.
-
-
-\noindent \verb|Authorizer|: Entity that implements the logic of the access control policy and may use information stored in AuthorizationContext if necessary. There must be at least one Authorizer. Every Authorizer must provide its response to the AuthorizationProcessor, usually a "yes" or "no"; however, it must be possible to include other response types such as "Indeterminate".
-
-
-\noindent \verb|AuthorizerProcessor|: Entity that contains the combining algorithm for all the Authorizers defined in the application.
-
-
-\noindent \verb|AuthorizationMetada|: Entity that indicates which resources – or their operations – must be intercepted by the authorization mechanism. A requirement is that this element must be of metadata type, so that it can be used declaratively. Esfinge Guardian uses Java annotations as the implementation of this element; however, it can be considered a general marking element that is independent of a specific technology.
-
-
-
-\begin{figure*}
-  \centering
-  \includegraphics[scale=0.45]{img/guardian-class-diagram.png}
-  \caption{Esfinge Guardian class diagram (Silva et al. \cite{Silva2013})}
-  \label{fig:guardian-class-diagram}
-\end{figure*}
+\noindent \verb|AuthorizationMetada|: Entity that indicates which resources – or their operations – must be intercepted by the authorization mechanism. A requirement is that this element must be of metadata type so that it can be used declaratively. Esfinge Guardian uses Java annotations as the implementation of this element; however, it can be considered a general marking element that is independent of a specific technology.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -305,21 +257,17 @@ Performance is an issue in the decentralization model\cite{verborgh_iswc_2018}. 
 
 Author points out that federated SPARQL query engines perform better in private networks instead of on the public Web. Thus, a suitable alternative to overcome this issue is the promising \linebreak \textit{Linked Data Fragments}\cite{LDF}, less expressive query interfaces.
 
-\section{Conclusion}
-Here goes a conclusion.
+\section{Discussion and Conclusion}
 
+The LGPD requires companies to adopt a comprehensive data governance approach, including data profiling, data lineage, data masking, test-data management, and data archives. Also, specialized professionals are required to design and handle personal data.
 
-\section{BACKUP}
-1.%%  NEW PROPOSITION OF PARAGRAPH%%
-LGPD is based on the General Data Protection Regulation (GDPR),\footnote{http://data.consilium.europa.eu/doc/document/ST-9565-2015-INIT/en/pdf} which aims at protecting the personal data of EU individuals. In total, around 120 countries adopt comprehensive privacy laws and regulations to protect personal data held by private and public bodies \cite{Banisar2011}.
-
-
+In this work, we show how Esfinge Guardian can be used to manage authorizations in decentralized Web Apps to increase compliance with the LGPD's data governance requirements. Besides the offered examples, Esfinge Guardian could be used to anonymize personal data, with the Authorizers filtering information that could lead to users identification.
 
 %
 % The acknowledgments section is defined using the "acks" environment (and NOT an unnumbered section). This ensures
 % the proper identification of the section in the article metadata, and the consistent spelling of the heading.
 \begin{acks}
-To the Brazilian Network Information Center (NIC.br) and to the Web Technologies Study Center (Ceweb.br) for maintaining a sustainable ecosystem to promote initiatives to keep the Internet and the Web open and accessible for everyone.
+To the Brazilian Network Information Center (NIC.br) and Web Technologies Study Center (Ceweb.br) for supporting this research.
 \end{acks}
 
 %
