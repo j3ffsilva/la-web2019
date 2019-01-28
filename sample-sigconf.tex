@@ -7,6 +7,7 @@
 \definecolor{pgrey}{rgb}{0.46,0.45,0.48}
 \usepackage{tabularx}
 \usepackage{listings}
+
 \lstset{language=Java,
   showspaces=false,
   showtabs=false,
@@ -129,9 +130,9 @@ LGPD sets compliance requirements on the companies in charge of making decisions
 
 To avoid being classified as either data processors or data controllers, some companies may redesign applications as decentralized Web Applications (Web Apps). \red{An application is considered decentralized when it does not hold users' data} [\red{REF}]. Tim Berners-Lee and colleagues [\red{REF}] propose a platform called Solid (derived from "\textbf{So}cial \textbf{li}nked \textbf{d}ata"), which can be described as a set of principles, conventions, and tools for building decentralized Web Apps. Solid is based on the principle that users should have full ownership of their data, which are stored in Web-accessible personal online datastores (pods). Pods are independent of Web Apps. For obtaining services, users need to authorize Web Apps to access their pods explicitly, by classifying Web Apps as trusted.
 
-Nevertheless, this approach leaves users solely responsible for controlling access to protected resources, which may not be enough to comply with the LGPD requirements of Privacy by Design. For example, a bank Web App may have an operation that reads personal data from the pods that should be accessible by account managers but not by analysts. A violation of this access control policy would configure a data breach, in which case the companies might be required to show that they applied appropriate controls, possibly from the software design.
+Nevertheless, this approach leaves users solely responsible for controlling access to protected resources, which may not be \linebreak enough to comply with the LGPD requirements of Privacy by Design. For example, a bank Web App may have an operation that reads personal data from the pods that should be accessible by account managers but not by analysts. A violation of this access control policy would configure a data breach, in which case the companies might be required to show that they applied appropriate controls, possibly from the software design.
 
-The current body of literature does not ...
+\red{The current body of literature does not ...}
 
 \vspace{0.15cm}
 \noindent \textbf{RQ1: How decentralized Web Apps could be designed for privacy to comply with LGPD in an auditable fashion?}
@@ -150,21 +151,26 @@ LGPD has also included the right of data portability, the right of access to per
 
 The Brazilian law also requires companies to nominate a Data Protection Officer (DPO) who will be in charge of monitoring the adoption of best practices for personal data protection and for reporting to the National Data Protection Authority (ANPD).
 
-The regulation defines the concepts of personal data as "any data, isolated or aggregated to another, that may allow the identification of a nutral person or subject them to a certain behavior" [\red{REF}] (IAPP: https://iapp.org/news/a/the-new-brazilian-general-data-protection-law-a-detailed-analysis/); sensitive data refers to data that may be subject to discriminatory practices, such as political opinion, sexual life, religious belief, genetic and biometric data, and it should have additional security layers; Unless it is possible to reverse-engineering the anonimized data, the law does not apply to this kind of data.
+The regulation defines the concepts of personal data as "any data, isolated or aggregated to another, that may allow the identification of a natural person or subject them to a certain behavior" \cite{iapp2018}; sensitive data refers to data that may be subject to discriminatory practices, such as political opinion, sexual life, religious belief, genetic and biometric data, and it should have additional security layers; Unless it is possible to reverse-engineering the anonymized data, the law does not apply to this kind of data.
 
 In a technical perspective, the efforts related to the decentralization of the Web help to build systems that are privacy-friendly, respecting user's privacy and in compliance with the regulations.
-\textcolor{red}{Ainda nao sei se esse paragrafo fica nessa section ou na proxima.}
 
 \subsection{Solid and the Decentralized Web}
-Traditional social web applications, such as Facebook, Twitter, and others control its own data and have its own authenticatoin and access control mechanisms, transforming them into centralized applications. In the contrast of this approach, there are emergent solutions propposing a new perspective to enable decoupling application logic and user data, allowing it to create privacy-friendly services on the Web.
+Traditional social web applications, such as Facebook, Twitter, and others control its own data and have its own authentication and access control mechanisms, transforming them into centralized applications. In the contrast of this approach, there are emergent solutions proposing a new perspective to enable decoupling application logic and user data, allowing it to create privacy-friendly services on the Web.
 
-Solid is a platform that supports decentralized social web applications, relying on open standards and on semantic web technologies. In the Solid platform, applications run in a browser or as mobile applications, while users` data are stored in a Web-accesibile personal on-line datastore (pod). Protocols for authenticatoin, access control, communications among servers and applications are specified in the platform \cite{Sambra2016}.
+Solid is a platform that supports decentralized social web applications, relying on open standards and on semantic web technologies. In the Solid platform, applications run in a browser or as mobile applications, while users` data are stored in a Web-accessible personal on-line data store (pod). Protocols for authentication, access control, communications among servers and applications are specified in the platform \cite{Sambra2016}.
 
-Data used by applications built on top of Solid is stored in users` pods, while pods can be stored on pod servers. Pod servers manage data according to the Linked Data Platform recommendation, enabling it to manipulate data items through HTTP requests \cite{LDP}. Solid servers are, as defined by their authors \cite{Sambra2016}, application-agnostic, and can deal with both structured and unstructured data. The first is represented using RDF, a Semantic Web standard, and the latter is any type of data, such as videos, images, HTML web pages.
+Data used by applications built on top of Solid is stored in users` pods, while pods can be stored on pod servers. Pod servers manage data according to the Linked Data Platform recommendation, enabling it to manipulate data items through HTTP requests \cite{LDP}. Solid servers are, as defined by their authors \cite{Sambra2016},\linebreak application-agnostic, and can deal with both structured and unstructured data. The first is represented using RDF, a Semantic Web standard, and the latter is any type of data, such as videos, images, HTML web pages.
 
-Application development based on (in???) Solid platform supports portability and interoperability, so applications can be seen as an interface that works with distributed data in multiple pod server implementations.
+Application development based on (\red{in???}) Solid platform supports portability and interoperability, so applications can be seen as an interface that works with distributed data in multiple pod server implementations.
 
 Identity in the Solid context is based on WebID, which allows agents (a person, an organization, etc.) to create their own identities using global unique identifiers - HTTP URIs \cite{Sambra2016solid}. WebID is an open and decentralized identification mechanism being developed by a W3C community group\footnote{\url{https://www.w3.org/community/webid/}}.
+
+The main idea behind Solid is to put people back in control of their data, allowing them to choose where to store their own data. Solid proposal is aligned with the view of a \textit{decentralized web}, where data is decentralized and stored in personal data storage, or distributed servers in which the user has full control over its own data \cite{verborgh_iswc_2018}.
+
+In a decentralized web model, resources created using one application can be read and modified by a different application without prior agreement between the applications. It is possible because the applications are interfaces to access data stored in multiple locations, such as in a \textit{pod}.
+
+One can say that the decentralized web is characterized by \linebreak changing data ownership, giving users the tools to have full control of their data, supported by legal instruments, such as GDPR and LGPD, that empower them to control their own personal information.
 
 \subsection{Access Control in Solid}
 
@@ -227,10 +233,10 @@ As depicted in Figure \ref{fig:guardian-class-diagram}, Guardian is composed of 
 
 \noindent \verb|AuthorizationContext|. It is the central entity that holds all the information required for an authorization, which includes the data for the subject, resource, and environment. That means all other entities should provide AuthorizationContext with enough information for authorization to occur. It is also an interface with the user, meaning that all other points must be hidden from the user.
 
-\noindent \verb|GuardianInterceptor|: is the entity responsible for abstracting the different existing interception technologies such as aspect-orientation, CGLib, dynamic proxy etc.
+\noindent \verb|GuardianInterceptor|: is the entity responsible for abstracting the different existing interception technologies such as \linebreak aspect-orientation, CGLib, dynamic proxy etc.
 
 
-\noindent \verb|Invoker|: is an entity with the ability to mimic the operation performed by the subject on a protected resource. In the Esfinge Guardian framework, this element can execute methods; however, it is important to note that is just one of the possibilities since the architectural model is general.
+\noindent \verb|Invoker|: is an entity with the ability to mimic the operation performed by the subject on a protected resource. In the Esfinge \linebreak Guardian framework, this element can execute methods; however, it is important to note that is just one of the possibilities since the architectural model is general.
 
 
 \noindent \verb|Populator|: It is the entity that contains the data extraction logic for authorization. Information for authorization can be anywhere such as databases, files, shared variables, user session, arguments, Internet, etc. For this reason, Populator is an entity that knows how to obtain information from all these places.
@@ -286,13 +292,18 @@ Finally, developers should use the domain annotations (\verb|@ManagersOnly| and 
 
 We list two benefits of using Esfinge Guardian for managing access control in decentralized Web Apps compliant to LGPD. First, by providing a mechanism for separating authorization from business concerns, Esfinge Guardian eases that a specialized privacy team to work independently from other software engineers (the principle of least privilege). In this way, only the developers in the privacy team would become liable in case of data breaches. Second, the use of domain annotations makes the code more readable for audits.
 
-\section{Discussion}
-
-Here goes some discussion.
 
 \section{Related Works}
-A bit about others work.
 
+The new regulations about data protection (i.e. GDPR, LGDP) bring new technical challenges related to how applications will handle personal data still be in compliance the law in terms of privacy. Application vendors are already able to guarantee compliance to these regulations in their tools in terms of consent management and personal data tracking, although data portability and interoperability among different products and services are still big challenges to tackle.
+
+According to \cite{bonatti2018data}, it is necessary to have tools and best practices to help building privacy-by-design systems\cite{cavoukian2009privacy}. Authors argue that the standardization work in this domain still have to address the interoperability challenge. There are no standard ontology that align the terminology of privacy legislation with vocabularies to describe and interchange data, thus enabling personal data portability.
+
+There are ongoing initiatives putting together efforts to develop vocabularies and standards to enable semantic interoperability and transparency logs about personal data processing. A primary forum working on this matter is the 'W3C Community Group' entitled \textit{Data Privacy Vocabularies and Controls CG}.
+
+Performance is an issue in the decentralization model\cite{verborgh_iswc_2018}. The heterogeneity and distribution of a decentralized network implies that data processing algorithms will require more computational resources to perform tasks, comparing it with the centralized ones.
+
+Author points out that federated SPARQL query engines perform better in private networks instead of on the public Web. Thus, a suitable alternative to overcome this issue is the promising \linebreak \textit{Linked Data Fragments}\cite{LDF}, less expressive query interfaces.
 
 \section{Conclusion}
 Here goes a conclusion.
@@ -308,7 +319,7 @@ LGPD is based on the General Data Protection Regulation (GDPR),\footnote{http://
 % The acknowledgments section is defined using the "acks" environment (and NOT an unnumbered section). This ensures
 % the proper identification of the section in the article metadata, and the consistent spelling of the heading.
 \begin{acks}
-To Robert, for the bagels and explaining CMYK and color spaces.
+To the Brazilian Network Information Center (NIC.br) and to the Web Technologies Study Center (Ceweb.br) for maintaining a sustainable ecosystem to promote initiatives to keep the Internet and the Web open and accessible for everyone.
 \end{acks}
 
 %
