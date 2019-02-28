@@ -1,6 +1,18 @@
 %
 % The first command in your LaTeX source must be the \documentclass command.
 \documentclass[sigconf]{acmart}
+
+\copyrightyear{2019}
+\acmYear{2019}
+\setcopyright{iw3c2w3}
+\acmConference[WWW '19 Companion]{Companion Proceedings of the 2019 World Wide Web Conference}{May 13--17, 2019}{San Francisco, CA, USA}
+\acmBooktitle{Companion Proceedings of the 2019 World Wide Web Conference (WWW '19 Companion), May 13--17, 2019, San Francisco, CA, USA}
+\acmPrice{}
+\acmDOI{10.1145/3308560.3316461}
+\acmISBN{978-1-4503-6675-5/19/05}
+
+
+
 \definecolor{pblue}{rgb}{0.13,0.13,1}
 \definecolor{pgreen}{rgb}{0,0.5,0}
 \definecolor{pred}{rgb}{0.9,0,0}
@@ -37,12 +49,12 @@
 % These commands are for a PROCEEDINGS abstract or paper.
 \copyrightyear{2019}
 \acmYear{2019}
-\setcopyright{acmlicensed}
-\acmConference[LA-WEB]{LA-WEB 2019: 10th Latin American Web Congress}{May 13-14, 2019}{San Francisco, CA, USA}
-\acmBooktitle{LA-WEB 2019: 10th Latin American Web Congress. May 13-14, 2019. San Francisco, CA, USA}
-\acmPrice{15.00}
-\acmDOI{}
-\acmISBN{6}
+\setcopyright{iw3c2w3}
+\acmConference[WWW '19 Companion]{Companion Proceedings of the 2019 World Wide Web Conference}{May 13--17, 2019}{San Francisco, CA, USA}
+\acmBooktitle{Companion Proceedings of the 2019 World Wide Web Conference (WWW '19 Companion), May 13--17, 2019, San Francisco, CA, USA}
+\acmPrice{}
+\acmDOI{10.1145/3308560.3316461}
+\acmISBN{978-1-4503-6675-5/19/05}
 
 %
 % These commands are for a JOURNAL article.
@@ -111,10 +123,23 @@
 Decentralized web applications do not offer fine-grained access controls to users' data, which potentially creates openings for data breaches. For software companies that need to comply with Brazil's  General Data Protection Law (LGPD), data breaches not only might harm application users but also could expose the companies to hefty fines. In this context, engineering fine-grained authorization controls (that comply with the LGPD) to decentralized web application requires creating audit trails, possibly in the source code. Although the literature offers some solutions, they are scattered. We present Esfinge Guardian, an authorization framework that completely separates authorization from other concerns, which increases compliance with the LGPD. We conclude the work with a brief discussion.
 \end{abstract}
 
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10011007.10011074.10011075.10011077</concept_id>
+<concept_desc>Software and its engineering~Software design engineering</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Software and its engineering~Software design engineering}
+
+
 %
 % Keywords. The author(s) should pick words that accurately describe the work being
 % presented. Separate the keywords with commas.
-\keywords{Access control, Decentralized Web Applications, Frameworks, Guardian, Solid}
+\keywords{Access control; Decentralized Web Applications; Frameworks; Guardian; Solid}
 
 %
 % This command processes the author and affiliation and title information and builds
@@ -133,9 +158,7 @@ Using Solid alone leaves users solely responsible for controlling access to prot
 
 This context indicates that it is necessary to engineer fine-grained authorization controls, without loosing the simplicity required in auditing the source code. Thus, we establish the following research question (RQ).
 
-\vspace{0.15cm}
 \noindent \textbf{RQ: How to design fine-grained authorization controls to decentralized web applications that comply with the LGPD requirement of data governance?}
-\vspace{0.15cm}
 
 The answer to our RQ may help companies to increase compliance with the LGPD by employing several software engineering techniques, which are implemented in Esfinge Guardian. With this paper, we contribute to the literature in at least two ways. First, by showing that the decentralization of a web application may not be enough for companies to avoid liability issues. Second, by pointing the need for more research on how the use of Esfinge Guardian (and others) could increase compliance with the LGPD (and other regulations).
 
@@ -157,7 +180,6 @@ Solid is a platform that supports decentralized web applications, by relying on 
 
 Identity in the Solid context is based on WebID, which allows agents (e.g., a person, an organization) to create their identities using global unique identifiers - HTTP URIs \cite{Sambra}. A WebID is an open and decentralized identification mechanism being developed by a W3C community group.\footnote{\url{https://www.w3.org/community/webid/}}
 
-In a decentralized web application model, resources created by an application and can be updated by a different one without prior agreement between the applications. It is possible because the applications are interfaces to access data stored in multiple locations, such as in pods.
 
 \subsection{Authorization in Solid}
 
@@ -174,7 +196,7 @@ Solid uses the Web Access Control (WAC) specification for authorizing the access
 
 
 \begin{lstlisting}[escapeinside=||,caption={Example WAC Document}, captionpos=b,label={lst:individual-permission}]
- |\includegraphics[trim=2cm 21.9cm 4.7cm 2cm, clip, scale=0.57]{pdf/alice-permission}|
+ |\includegraphics[trim=2cm 21.9cm 4.7cm 2cm, clip, scale=0.57]{alice-permission}|
 \end{lstlisting}
 
 Listing \ref{lst:individual-permission} shows an example of a WAC document that specifies that Alice (as identified by her WebID \code{https://alice.\\databox.me/profile/card\#me}) has full access (read, write, and control) to one of her web resources, located at \code{https://\\alice.databox.me/docs/file1}.
@@ -191,7 +213,7 @@ In this section, we present the Esfinge Guardian\footnote{\url{https://github.co
 
 \begin{figure}
  \centering
- \includegraphics[scale=0.5]{img/interception-mechanism.png}
+ \includegraphics[scale=0.5]{interception-mechanism.jpg}
  \caption{A conceptualization of the interception mechanism (Silva et al. \cite{Silva2013})}
  \label{fig:interception-mechanism}
 \end{figure}
@@ -200,43 +222,43 @@ Additionally, Figure \ref{fig:guardian-in-decentralized-webapp} depicts Esfinge 
 
 Esfinge Guardian is composed of eight elements (see Guerra et al. \cite{Guerra2015} and Silva et al.\cite{Silva2013} for in-depth explanations). Figure \ref{fig:class-diagram} depicts the relationship between the elements in UML.
 
-\vspace{0.8mm} \noindent \verb|AuthorizationContext|. It is the central entity that holds all the information required for an authorization, which includes the data for the subject, resource, and environment. That means all other entities should provide \verb|AuthorizationContext| with enough information for authorization to occur.
+\noindent \verb|AuthorizationContext|. It is the central entity that holds all the information required for an authorization, which includes the data for the subject, resource, and environment. That means all other entities should provide \verb|AuthorizationContext| with enough information for authorization to occur.
 
-\vspace{0.8mm} \noindent \verb|GuardianInterceptor|.
+\noindent \verb|GuardianInterceptor|.
 Ideally, the user must be able to indicate what operations should be protected and be oblivious of all other things. A request to a protected operation must be intercepted transparently, not directly called. \verb|GuardianInterceptor| is the entity responsible for abstracting the different existing interception technologies such as aspect-orientation, CGLib, and dynamic proxy.
 
 \begin{figure}
   \centering
-  \includegraphics[scale=0.5]{img/guardian-in-decentralized-webapp.png}
+  \includegraphics[scale=0.5]{guardian-in-decentralized-webapp.jpg}
   \caption{Esfinge Guardian representation in a decentralized web application}
   \label{fig:guardian-in-decentralized-webapp}
 \end{figure}
 
-\vspace{0.8mm} \noindent \verb|Invoker|.
+\noindent \verb|Invoker|.
 The original request to the protected operation on the resource is intercepted; therefore the mechanism must be in charge of replicating the request to the resource if the access is granted. \verb|Invoker| is an entity with the ability to mimic the operation performed by the subject on a protected resource. In the Esfinge Guardian framework, this element can execute methods; however, it is important to note that it is just one of the possibilities since the architectural model is general.
 
 One additional feature is that \verb|Invoker| is responsible for determining when the authorization logic is performed. In many cases, enforcing the authorization logic only makes sense after the protected operation is performed. For instance, consider the case when the operation retrieves a collection, and the authorization rule requires iterating it in order to verify if the subject can indeed access all of its items. In this manner, there should be a way for configuring the precise moment that the authorization should take place.
 
 \begin{figure*}
  \centering
- \includegraphics[scale=0.4]{img/guardian-class-diagram.png}
+ \includegraphics[scale=1.7]{guardian-class-diagram.jpg}
  \caption{The Esfinge Guardian Class Diagram (Silva et al.\cite{Silva2013})}
  \label{fig:class-diagram}
 \end{figure*}
 
-\vspace{0.8mm} \noindent \verb|Populator|.
+\noindent \verb|Populator|.
 It is the entity that contains the data extraction logic for authorization. Information for authorization can be anywhere such as databases, files, shared variables, user session, arguments, and the Internet. For this reason, \verb|Populator| is an entity that knows how to obtain information from all these places.
 There can be zero or more \verb|Populators| in the application; each one specialized in obtaining a different type of information from a different place.
 
-\vspace{0.8mm} \noindent \verb|PopulatorProcessor|.
+\noindent \verb|PopulatorProcessor|.
 The entity that gathers and executes all defined \verb|Populators| in the application.
 
-\vspace{0.8mm} \noindent \verb|Authorizer|. This is entity that implements the logic of the access control policy and may use information stored in \verb|AuthorizationContext| if necessary. There must be at least one \verb|Authorizer|. Every \verb|Authorizer| respond in the form of a ``yes" or ``no;" however, it must be possible to include other response types such as ``Indeterminate."
+\noindent \verb|Authorizer|. This is entity that implements the logic of the access control policy and may use information stored in \verb|AuthorizationContext| if necessary. There must be at least one \verb|Authorizer|. Every \verb|Authorizer| respond in the form of a ``yes" or ``no;" however, it must be possible to include other response types such as ``Indeterminate."
 
-\vspace{0.8mm} \noindent \verb|AuthorizerProcessor|.
+\noindent \verb|AuthorizerProcessor|.
 It is the entity that contains the combining algorithm for all the \verb|Authorizers| defined in the application.
 
-\vspace{0.8mm} \noindent \verb|AuthorizationMetada|.
+\noindent \verb|AuthorizationMetada|.
 This is an entity that indicates which resources---or their operations---must be intercepted by the authorization mechanism. A requirement is that this element must be of metadata type so that it can be used declaratively. Esfinge Guardian uses Java annotations as the implementation of this element; however, it can be considered a general marking element that is independent of a specific technology.
 
 
