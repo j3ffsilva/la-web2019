@@ -1,0 +1,90 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: sample-sigconf.aux
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: laweb19.bib
+Warning--entry type for "LDP" isn't style-file defined
+--line 33 of file laweb19.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--no key, author in ONTO
+Warning--no author, editor, organization, or key in ONTO
+Warning--to sort, need author or key in ONTO
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Warning--no key, author in ONTO
+Warning--no key, author in ONTO
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--no key, author in ONTO
+Warning--no author, editor, organization, or key in ONTO
+Warning--empty author in ONTO
+Warning--empty year in ONTO
+Warning--no number and no volume in Banisar2011
+Warning--page numbers missing in both pages and numpages fields in Banisar2011
+Warning--empty publisher in Bern06
+Warning--empty address in Bern06
+Warning--page numbers missing in both pages and numpages fields in Bern06
+Warning--no journal in Ed2014
+Warning--unusual to have number, but no volume, for Ed2014
+Warning--page numbers missing in both pages and numpages fields in Ed2014
+Warning--no number and no volume in Dodson2012
+Warning--unusual to have number, but no volume, for Guerra2010
+Warning--no journal in Guerra2015
+Warning--page numbers missing in both pages and numpages fields in Guerra2015
+Warning--page numbers missing in both pages and numpages fields in Hollenbach2009
+Warning--empty year in Sambra
+Warning--no journal in Sambra
+Warning--no number and no volume in Sambra
+Warning--page numbers missing in both pages and numpages fields in Sambra
+Warning--can't use both volume and number fields in Silva2013
+Warning--empty publisher in Silva2013
+Warning--empty address in Silva2013
+Warning--empty publisher in Smith2012
+Warning--empty address in Smith2012
+Warning--page numbers missing in both pages and numpages fields in Smith2012
+Warning--no number and no volume in VanKleek2012
+Warning--page numbers missing in both pages and numpages fields in VanKleek2012
+You've used 16 entries,
+            5719 wiz_defined-function locations,
+            1385 strings with 17688 characters,
+and the built_in function-call counts, 16375 in all, are:
+= -- 1933
+> -- 705
+< -- 0
++ -- 228
+- -- 236
+* -- 1245
+:= -- 1777
+add.period$ -- 78
+call.type$ -- 16
+change.case$ -- 116
+chr.to.int$ -- 16
+cite$ -- 54
+duplicate$ -- 1368
+empty$ -- 986
+format.name$ -- 276
+if$ -- 3854
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 47
+newline$ -- 182
+num.names$ -- 120
+pop$ -- 613
+preamble$ -- 1
+purify$ -- 248
+quote$ -- 0
+skip$ -- 432
+stack$ -- 0
+substring$ -- 951
+swap$ -- 99
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 354
+warning$ -- 34
+while$ -- 91
+width$ -- 0
+write$ -- 312
+(There were 35 warnings)
